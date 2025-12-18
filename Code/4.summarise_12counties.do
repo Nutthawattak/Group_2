@@ -29,7 +29,7 @@ table Country_code_A3 post_paris, ///
 gen ln_co2 = ln(co2_mt)
 
 bysort Country_code_A3 (year): gen co2_log_growth = (ln_co2 - ln_co2[_n-1]) * 100
-label var co2_log_growth "CO2 log growth (approx % per year)"
+
 
 * sd growth
 bysort Country_code_A3: egen sd_co2_growth = sd(co2_log_growth)
@@ -44,8 +44,6 @@ bys Country_code_A3: keep if _n == 1
 sort Country_code_A3
 list Country_code_A3 sd_co2_growth sd_gdp_annual_growth vol_ratio, sepby(Country_code_A3)
 
-	
-export delimited using "C:\Users\Admin\Documents\Github\Group_2\Output\Table\Table1_emissions_gdp_pre_post.csv" , replace
 
 
 
